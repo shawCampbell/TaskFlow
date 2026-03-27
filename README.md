@@ -21,3 +21,10 @@ TaskFlow is a back-end C++ application that accepts a set of user-defined tasks 
 - Build a schedule that fits within the selected time window
 - Track which tasks were completed and which were left out
 - Report a clean summary: scheduled tasks in order, total time used, and a list of deferred tasks
+
+# Design Decisions 
+
+## Models
+- Tasks will be multiples of 30 minutes. This felt like a natural primitive unit of time 
+- The 'CPU-burst' is the task duration
+- Arrival times of tasks are not included because humans often have their tasks before making a schedule. This also means our scheduling algorithms can assume all tasks have the same arrival time.
