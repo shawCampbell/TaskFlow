@@ -23,7 +23,6 @@ void printResult(const ScheduleResult& result) {
         std::cout << "[" << task.id << "] " << task.name
                   << " | Slots: " << task.timeSlots
                   << " (" << task.timeSlots * 30 << " mins)"
-                //   << " | Priority: " << static_cast<int>(task.priority) << "\n";
                     << " | Priority: " << priorityToString(task.priority) << "\n";
     }
 
