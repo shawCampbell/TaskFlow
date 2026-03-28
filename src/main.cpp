@@ -6,13 +6,25 @@
 #include "SchedulerContext.h"
 #include "SchedulerFactory.h"
 
+const char* priorityToString(Priority p) {
+    switch (p) {
+        case Priority::VeryLow:  return "Very Low";
+        case Priority::Low:     return "Low";
+        case Priority::Medium:  return "Medium";
+        case Priority::High:    return "High";
+        case Priority::Critical:return "Critical";
+        default:               return "Unknown";
+    }
+}
+
 void printResult(const ScheduleResult& result) {
     std::cout << "\n--- Scheduled Tasks ---\n";
     for (const Task& task : result.scheduledTasks) {
         std::cout << "[" << task.id << "] " << task.name
                   << " | Slots: " << task.timeSlots
                   << " (" << task.timeSlots * 30 << " mins)"
-                  << " | Priority: " << static_cast<int>(task.priority) << "\n";
+                //   << " | Priority: " << static_cast<int>(task.priority) << "\n";
+                    << " | Priority: " << priorityToString(task.priority) << "\n";
     }
 
     std::cout << "\nTotal time used: " << result.totalTimeUsed << " slots ("
