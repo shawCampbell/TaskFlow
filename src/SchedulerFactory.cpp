@@ -1,4 +1,4 @@
-#include "./include/SchedulerFactory.h"
+#include "SchedulerFactory.h"
 #include "SjfScheduler.h"
 #include "PriorityScheduler.h"
 

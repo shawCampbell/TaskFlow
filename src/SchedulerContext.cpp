@@ -1,4 +1,4 @@
-#include "./include/SchedulerContext.h"
+#include "SchedulerContext.h"
 
 SchedulerContext::SchedulerContext(std::unique_ptr<IScheduler> scheduler)
     : scheduler_(std::move(scheduler)) {}

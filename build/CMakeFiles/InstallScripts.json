@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/dev_personal/TaskFlow/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

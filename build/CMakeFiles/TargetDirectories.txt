@@ -1,0 +1,3 @@
+C:/dev_personal/TaskFlow/build/CMakeFiles/TaskFlow.dir
+C:/dev_personal/TaskFlow/build/CMakeFiles/edit_cache.dir
+C:/dev_personal/TaskFlow/build/CMakeFiles/rebuild_cache.dir

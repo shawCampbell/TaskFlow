@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\TaskFlow.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\TaskFlow.dir/objects.a @CMakeFiles\TaskFlow.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe -Wl,--whole-archive CMakeFiles\TaskFlow.dir/objects.a -Wl,--no-whole-archive -o TaskFlow.exe -Wl,--out-implib,libTaskFlow.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TaskFlow.dir\linkLibs.rsp
