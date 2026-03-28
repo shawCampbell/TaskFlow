@@ -2,7 +2,7 @@
 ### Project: TaskFlow — A CPU-Inspired Task Scheduler in C++
 TaskFlow is a back-end C++ application that accepts a set of user-defined tasks and schedules them across a fixed time window (default: 10 hours / 600 minutes) using a selected scheduling algorithm adapted from classical CPU scheduling theory.
 
-<img src="./Design/OO Design.drawio.png" height="500">
+<img src="./Design/OO Design.drawio.png" height="500" style="margin-left:10; border-radius:2%;">
 
 **Each task carries:**
 
