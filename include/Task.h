@@ -5,6 +5,6 @@
 struct Task {
     int         id;
     std::string name;
-    int         durationHalfHours;
+    int         timeSlots;
     Priority    priority;
 };
