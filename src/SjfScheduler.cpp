@@ -1,63 +1,44 @@
 #include "SjfScheduler.h"
 #include <algorithm>
 
-struct TaskState {
-    Task task;
-    int  remainingSlots;
-    bool completed;
-};
-
 ScheduleResult SjfScheduler::schedule(const std::vector<Task>& tasks, int timeLimitSlots, Time startTime) {
-    // Build local state for each task
-    std::vector<TaskState> states;
-    for (const Task& task : tasks) {
-        states.push_back({task, task.timeSlots, false});
-    }
+    std::vector<Task> sorted = tasks;
+    std::sort(sorted.begin(), sorted.end(), [](const Task& a, const Task& b) {
+        if (a.timeSlots != b.timeSlots)
+            return a.timeSlots < b.timeSlots;
+        return static_cast<int>(a.priority) > static_cast<int>(b.priority);
+    });
 
     ScheduleResult result;
     result.totalTimeUsed = 0;
     Time current = startTime;
 
-    for (int slot = 0; slot < timeLimitSlots; slot++) {
-        // Find all released, incomplete tasks that can meet their deadline
-        TaskState* best = nullptr;
-        for (TaskState& state : states) {
-            if (state.completed) continue;
-
-            bool released      = state.task.releaseTime <= current;
-            Time projectedEnd  = current;
-            projectedEnd.addSlots(state.remainingSlots);
-            bool meetsDealine  = projectedEnd <= state.task.deadline;
-
-            if (released && meetsDealine) {
-                if (best == nullptr || state.remainingSlots < best->remainingSlots) {
-                    best = &state;
-                }
-            }
+    for (const Task& task : sorted) {
+        Time taskStart = current;
+        
+        // respect release time
+        if (task.releaseTime > current) {
+            taskStart = task.releaseTime;
         }
 
-        // No eligible task this slot, advance time and continue
-        if (best == nullptr) {
-            current.addSlots(1);
-            continue;
-        }
+        Time taskEnd = taskStart;
+        taskEnd.addSlots(task.timeSlots);
 
-        // Run the best task for one slot
-        best->remainingSlots--;
-        result.totalTimeUsed++;
-        current.addSlots(1);
+        bool withinTimeLimit = (result.totalTimeUsed + task.timeSlots) <= timeLimitSlots;
+        bool meetsDeadline   = taskEnd <= task.deadline;
 
-        // Check if task is now complete
-        if (best->remainingSlots == 0) {
-            best->completed = true;
-            result.scheduledTasks.push_back(best->task);
-        }
-    }
-
-    // Any incomplete task is deferred
-    for (const TaskState& state : states) {
-        if (!state.completed) {
-            result.deferredTasks.push_back(state.task);
+        if (withinTimeLimit && meetsDeadline) {
+            CompletedTask ct;
+            ct.task           = task;
+            ct.startTime      = taskStart;
+            ct.completionTime = taskEnd;
+            ct.responseTime   = (taskStart.toTotalMinutes() - task.releaseTime.toTotalMinutes()) / 30;
+            ct.waitingTime    = ct.responseTime; // non-preemptive: waiting = response time
+            result.scheduledTasks.push_back(ct);
+            result.totalTimeUsed += task.timeSlots;
+            current = taskEnd;
+        } else {
+            result.deferredTasks.push_back(task);
         }
     }
 
