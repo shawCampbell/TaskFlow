@@ -45,12 +45,15 @@ void printResult(const ScheduleResult& result, Time startTime) {
 
 int main() {
     std::vector<Task> tasks = {
-        {1, "Write report",        4, Priority::High},
-        {2, "Reply to emails",     1, Priority::Low},
-        {3, "Team meeting",        2, Priority::Critical},
-        {4, "Code review",         3, Priority::Medium},
-        {5, "Documentation",       5, Priority::VeryLow},
-        {6, "Fix critical bug",    2, Priority::Critical},
+    {1, "Write report",     4, Priority::High,     Time(8, 0),  Time(12, 0)},
+    {2, "Reply to emails",  1, Priority::Low,       Time(8, 0),  Time(17, 0)},
+    {3, "Team meeting",     2, Priority::Critical,  Time(10, 0), Time(12, 0)},
+    {4, "Code review",      3, Priority::Medium,    Time(9, 0),  Time(15, 0)},
+    {5, "Documentation",    5, Priority::VeryLow,   Time(8, 0),  Time(17, 0)},
+    {6, "Fix critical bug", 2, Priority::Critical,  Time(8, 0),  Time(11, 0)},
+    // {7, "Plan next sprint", 3, Priority::High,     Time(13, 0), Time(17, 0)},
+    // {8, "One-on-one",       1, Priority::Medium,    Time(14, 0), Time(15, 0)},
+    // {9, "Research new tech",4, Priority::Low,       Time(8, 0),  Time(17, 0)}
     };
 
     int timeLimitSlots = 12; // 12 slots = 6 hours
