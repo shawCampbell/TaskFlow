@@ -1,77 +1,70 @@
 #include "PriorityScheduler.h"
 #include <algorithm>
 
-struct TaskState {
-    Task task;
-    int  remainingSlots;
-    bool completed;
-};
-
-static int urgencyBoost(const TaskState& state, const Time& current) {
-    Time projectedEnd = current;
-    projectedEnd.addSlots(state.remainingSlots);
-    int slotsUntilDeadline = (state.task.deadline.toTotalMinutes() - current.toTotalMinutes()) / 30;
-
+static int urgencyBoost(const Task& task, const Time& current) {
+    int slotsUntilDeadline = (task.deadline.toTotalMinutes() - current.toTotalMinutes()) / 30;
     if (slotsUntilDeadline <= 2) return 3;
     if (slotsUntilDeadline <= 4) return 2;
     if (slotsUntilDeadline <= 6) return 1;
     return 0;
 }
 
-static int effectivePriority(const TaskState& state, const Time& current) {
-    return (static_cast<int>(state.task.priority) * 2) + urgencyBoost(state, current);
+static int effectivePriority(const Task& task, const Time& current) {
+    return (static_cast<int>(task.priority) * 2) + urgencyBoost(task, current);
 }
 
 ScheduleResult PriorityScheduler::schedule(const std::vector<Task>& tasks, int timeLimitSlots, Time startTime) {
-    std::vector<TaskState> states;
-    for (const Task& task : tasks) {
-        states.push_back({task, task.timeSlots, false});
-    }
+    std::vector<Task> remaining = tasks;
 
     ScheduleResult result;
     result.totalTimeUsed = 0;
     Time current = startTime;
 
-    for (int slot = 0; slot < timeLimitSlots; slot++) {
-        TaskState* best = nullptr;
+    while (!remaining.empty()) {
+        // find highest effective priority task that is feasible right now
+        auto best = remaining.end();
         int bestPriority = -1;
 
-        for (TaskState& state : states) {
-            if (state.completed) continue;
+        for (auto it = remaining.begin(); it != remaining.end(); ++it) {
+            Time taskStart = (it->releaseTime > current) ? it->releaseTime : current;
+            Time taskEnd   = taskStart;
+            taskEnd.addSlots(it->timeSlots);
 
-            bool released     = state.task.releaseTime <= current;
-            Time projectedEnd = current;
-            projectedEnd.addSlots(state.remainingSlots);
-            bool meetsDeadline = projectedEnd <= state.task.deadline;
+            bool withinTimeLimit = (result.totalTimeUsed + it->timeSlots) <= timeLimitSlots;
+            bool meetsDeadline   = taskEnd <= it->deadline;
 
-            if (released && meetsDeadline) {
-                int ep = effectivePriority(state, current);
+            if (withinTimeLimit && meetsDeadline) {
+                int ep = effectivePriority(*it, current);
                 if (ep > bestPriority) {
                     bestPriority = ep;
-                    best = &state;
+                    best = it;
                 }
             }
         }
 
-        if (best == nullptr) {
-            current.addSlots(1);
-            continue;
-        }
+        // no feasible task found
+        if (best == remaining.end()) break;
 
-        best->remainingSlots--;
-        result.totalTimeUsed++;
-        current.addSlots(1);
+        Time taskStart = (best->releaseTime > current) ? best->releaseTime : current;
+        Time taskEnd   = taskStart;
+        taskEnd.addSlots(best->timeSlots);
 
-        if (best->remainingSlots == 0) {
-            best->completed = true;
-            result.scheduledTasks.push_back(best->task);
-        }
+        CompletedTask ct;
+        ct.task           = *best;
+        ct.startTime      = taskStart;
+        ct.completionTime = taskEnd;
+        ct.responseTime   = (taskStart.toTotalMinutes() - best->releaseTime.toTotalMinutes()) / 30;
+        ct.waitingTime    = ct.responseTime;
+        result.scheduledTasks.push_back(ct);
+        result.totalTimeUsed += best->timeSlots;
+        current = taskEnd;
+
+        remaining.erase(best);
     }
 
-    for (const TaskState& state : states) {
-        if (!state.completed) {
-            result.deferredTasks.push_back(state.task);
-        }
+    // anything left is deferred
+    for (const Task& task : remaining) {
+        result.deferredTasks.push_back(task);
     }
 
     return result;
