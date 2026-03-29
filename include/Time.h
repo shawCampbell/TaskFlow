@@ -41,8 +41,14 @@ struct Time {
     }
 
     std::string toString() const {
-        char buf[6];
-        snprintf(buf, sizeof(buf), "%02d:%02d", hours, minutes);
+        int displayHours = hours % 24;
+        int day = hours / 24;
+        char buf[12];
+        if (day > 0) {
+            snprintf(buf, sizeof(buf), "Day%d %02d:%02d", day + 1, displayHours, minutes);
+        } else {
+            snprintf(buf, sizeof(buf), "%02d:%02d", displayHours, minutes);
+        }
         return std::string(buf);
     }
 };
