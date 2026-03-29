@@ -5,6 +5,8 @@
 #include "ScheduleResult.h"
 #include "SchedulerContext.h"
 #include "SchedulerFactory.h"
+#include "Time.h"
+
 
 const char* priorityToString(Priority p) {
     switch (p) {
@@ -17,24 +19,28 @@ const char* priorityToString(Priority p) {
     }
 }
 
-void printResult(const ScheduleResult& result) {
-    std::cout << "\n--- Scheduled Tasks ---\n";
+void printResult(const ScheduleResult& result, Time startTime) {
+    std::cout << "\n========== Schedule ==========\n";
+    Time current = startTime;
     for (const Task& task : result.scheduledTasks) {
-        std::cout << "[" << task.id << "] " << task.name
-                  << " | Slots: " << task.timeSlots
-                  << " (" << task.timeSlots * 30 << " mins)"
-                    << " | Priority: " << priorityToString(task.priority) << "\n";
+        Time end = current;
+        end.addSlots(task.timeSlots);
+        std::cout << "[" << current.toString() << " - " << end.toString() << "]"
+                  << "  " << task.name
+                  << "  (" << priorityToString(task.priority) << ")\n";
+        current = end;
     }
 
-    std::cout << "\nTotal time used: " << result.totalTimeUsed << " slots ("
-              << result.totalTimeUsed * 30 << " mins)\n";
+    std::cout << "\nTotal time used: " << result.totalTimeUsed * 30 << " mins\n";
 
     if (!result.deferredTasks.empty()) {
-        std::cout << "\n--- Deferred Tasks ---\n";
+        std::cout << "\n========== Deferred ==========\n";
         for (const Task& task : result.deferredTasks) {
-            std::cout << "[" << task.id << "] " << task.name << "\n";
+            std::cout << "  - " << task.name
+                      << "  (" << priorityToString(task.priority) << ")\n";
         }
     }
+    std::cout << "==============================\n";
 }
 
 int main() {
@@ -57,12 +63,17 @@ int main() {
     int choice;
     std::cin >> choice;
 
+    std::cout << "Enter start hour (e.g. 8 for 08:00): ";
+    int startHour;
+    std::cin >> startHour;
+    Time startTime(startHour, 0);
+
     SchedulerType type = (choice == 1) ? SchedulerType::SJF : SchedulerType::Priority;
 
     SchedulerContext context(SchedulerFactory::create(type));
     ScheduleResult result = context.run(tasks, timeLimitSlots);
 
-    printResult(result);
+    printResult(result, startTime);
 
     return 0;
 }
