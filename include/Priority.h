@@ -7,3 +7,4 @@ enum class Priority {
     High       = 4,
     Critical   = 5
 };
+

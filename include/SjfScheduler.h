@@ -3,5 +3,5 @@
 
 class SjfScheduler : public IScheduler {
 public:
-    ScheduleResult schedule(const std::vector<Task>& tasks, int timeLimitSlots) override;
+    ScheduleResult schedule(const std::vector<Task>& tasks, int timeLimitSlots, Time startTime) override;
 };

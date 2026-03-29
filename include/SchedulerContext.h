@@ -8,7 +8,8 @@
 class SchedulerContext {
 public:
     explicit SchedulerContext(std::unique_ptr<IScheduler> scheduler);
-    ScheduleResult run(const std::vector<Task>& tasks, int timeLimitSlots);
+    ScheduleResult run(const std::vector<Task>& tasks, int timeLimitSlots, Time startTime);
+
 
 private:
     std::unique_ptr<IScheduler> scheduler_;

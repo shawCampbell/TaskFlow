@@ -74,7 +74,7 @@ int main() {
     SchedulerType type = (choice == 1) ? SchedulerType::SJF : SchedulerType::Priority;
 
     SchedulerContext context(SchedulerFactory::create(type));
-    ScheduleResult result = context.run(tasks, timeLimitSlots);
+    ScheduleResult result = context.run(tasks, timeLimitSlots, startTime);
 
     printResult(result, startTime);
 

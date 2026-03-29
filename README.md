@@ -33,3 +33,11 @@ TaskFlow is a back-end C++ application that accepts a set of user-defined tasks 
 
 ## ISchedular Interface 
 - 'schedule' method takes a vector of tasks as a constant reference, as to not unncessarily have mutable types. All types should be constant by default when programming.
+
+## Building on Windows 
+
+run 
+
+```powershell
+mingw32-make
+```
