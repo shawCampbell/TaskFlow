@@ -6,6 +6,8 @@
 #include "SchedulerContext.h"
 #include "SchedulerFactory.h"
 #include "Time.h"
+#include "testData.h"
+#include <algorithm>
 
 
 const char* priorityToString(Priority p) {
@@ -19,16 +21,43 @@ const char* priorityToString(Priority p) {
     }
 }
 
+void printMetrics(const ScheduleResult& result) {
+    if (result.scheduledTasks.empty()) return;
+
+    float avgResponseTime = 0;
+    float avgWaitingTime  = 0;
+
+    for (const CompletedTask& ct : result.scheduledTasks) {
+        avgResponseTime += ct.responseTime;
+        avgWaitingTime  += ct.waitingTime;
+    }
+
+    int n = result.scheduledTasks.size();
+    avgResponseTime /= n;
+    avgWaitingTime  /= n;
+
+    float totalHours = result.totalTimeUsed * 0.5f;
+    float throughput = n / totalHours;
+
+    std::cout << "\n========== Metrics ==========\n";
+    std::cout << "Tasks completed:       " << n << "\n";
+    std::cout << "Tasks deferred:        " << result.deferredTasks.size() << "\n";
+    std::cout << "Avg response time:     " << avgResponseTime << " slots ("  << avgResponseTime * 30 << " mins)\n";
+    std::cout << "Avg waiting time:      " << avgWaitingTime  << " slots (" << avgWaitingTime  * 30 << " mins)\n";
+    std::cout << "Throughput:            " << throughput << " tasks/hour\n";
+    std::cout << "==============================\n";
+}
+
 void printResult(const ScheduleResult& result, Time startTime) {
     std::cout << "\n========== Schedule ==========\n";
-    Time current = startTime;
-    for (const Task& task : result.scheduledTasks) {
-        Time end = current;
-        end.addSlots(task.timeSlots);
-        std::cout << "[" << current.toString() << " - " << end.toString() << "]"
-                  << "  " << task.name
-                  << "  (" << priorityToString(task.priority) << ")\n";
-        current = end;
+    std::vector<CompletedTask> ordered = result.scheduledTasks;
+    std::sort(ordered.begin(), ordered.end(), [](const CompletedTask& a, const CompletedTask& b) {
+        return a.startTime < b.startTime;
+    });
+    for (const CompletedTask& ct : ordered) {
+        std::cout << "[" << ct.startTime.toString() << " - " << ct.completionTime.toString() << "]"
+                  << "  " << ct.task.name
+                  << "  (" << priorityToString(ct.task.priority) << ")\n";
     }
 
     std::cout << "\nTotal time used: " << result.totalTimeUsed * 30 << " mins\n";
@@ -44,16 +73,8 @@ void printResult(const ScheduleResult& result, Time startTime) {
 }
 
 int main() {
-    std::vector<Task> tasks = {
-        {1, "Write report",        4, Priority::High},
-        {2, "Reply to emails",     1, Priority::Low},
-        {3, "Team meeting",        2, Priority::Critical},
-        {4, "Code review",         3, Priority::Medium},
-        {5, "Documentation",       5, Priority::VeryLow},
-        {6, "Fix critical bug",    2, Priority::Critical},
-    };
 
-    int timeLimitSlots = 12; // 12 slots = 6 hours
+    int timeLimitSlots = 72;
 
     std::cout << "Select scheduler:\n";
     std::cout << "1. SJF (Shortest Job First)\n";
@@ -71,9 +92,10 @@ int main() {
     SchedulerType type = (choice == 1) ? SchedulerType::SJF : SchedulerType::Priority;
 
     SchedulerContext context(SchedulerFactory::create(type));
-    ScheduleResult result = context.run(tasks, timeLimitSlots);
+    ScheduleResult result = context.run(tasks, timeLimitSlots, startTime);
 
     printResult(result, startTime);
+    printMetrics(result);
 
     return 0;
 }

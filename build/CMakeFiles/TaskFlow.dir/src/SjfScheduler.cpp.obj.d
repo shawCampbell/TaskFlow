@@ -107,7 +107,9 @@ CMakeFiles/TaskFlow.dir/src/SjfScheduler.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/charconv.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
  C:/dev_personal/TaskFlow/include/Priority.h \
+ C:/dev_personal/TaskFlow/include/Time.h \
  C:/dev_personal/TaskFlow/include/ScheduleResult.h \
+ C:/dev_personal/TaskFlow/include/CompletedTask.h \
  C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
