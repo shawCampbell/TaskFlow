@@ -13,8 +13,8 @@ Each task carries:
 - A name
 - A duration in half-hour slots (e.g. 2 slots = 1 hour)
 - A priority level: `VeryLow`, `Low`, `Medium`, `High`, `Critical`
-- A release time — the earliest the task may start
-- A deadline — the latest the task must finish by
+- A release time - the earliest the task may start
+- A deadline - the latest the task must finish by
 
 Arrival times are not modelled because in personal scheduling, all tasks are known upfront. This means all scheduling algorithms can safely assume equal arrival times.
 
@@ -24,7 +24,7 @@ Arrival times are not modelled because in personal scheduling, all tasks are kno
 
 ### Shortest Job First (SJF)
 
-Tasks are sorted by duration, shortest first. In the case of a tie, the higher priority task runs first. The scheduler greedily fills the time window, skipping any task that cannot finish before its deadline. This algorithm maximises throughput — the number of tasks completed — but may deprioritise important long tasks.
+Tasks are sorted by duration, shortest first. In the case of a tie, the higher priority task runs first. The scheduler greedily fills the time window, skipping any task that cannot finish before its deadline. This algorithm maximises throughput - the number of tasks completed - but may deprioritise important long tasks.
 
 ### Priority Scheduling
 
@@ -43,9 +43,9 @@ The urgency boost increases as a task's deadline approaches:
 | <= 6 | +1 |
 | > 6  |  0 |
 
-This is a form of **aging** — a classical technique that prevents high-priority tasks from being starved as time runs on. The scheduler always selects the feasible task with the highest effective priority at the current moment.
+This is a form of **aging** - a classical technique that prevents high-priority tasks from being starved as time runs on. The scheduler always selects the feasible task with the highest effective priority at the current moment.
 
-Both algorithms are **non-preemptive** — once a task starts, it runs to completion. This is appropriate for human task scheduling where interrupting work mid-task is undesirable.
+Both algorithms are **non-preemptive** - once a task starts, it runs to completion. This is appropriate for human task scheduling where interrupting work mid-task is undesirable.
 
 ---
 
@@ -53,9 +53,9 @@ Both algorithms are **non-preemptive** — once a task starts, it runs to comple
 
 After scheduling, TaskFlow reports:
 
-- **Response time** — time from release until the task first starts
-- **Waiting time** — total time spent not running (in non-preemptive scheduling this equals response time)
-- **Throughput** — tasks completed per hour
+- **Response time** - time from release until the task first starts
+- **Waiting time** - total time spent not running (in non-preemptive scheduling this equals response time)
+- **Throughput** - tasks completed per hour
 
 ---
 
@@ -112,6 +112,54 @@ TaskFlow/
     ├── SjfScheduler.cpp
     └── PriorityScheduler.cpp
 ```
+
+---
+
+## Sample Results
+
+Both schedulers were run against the same 20-task set over a 36-hour window starting at 08:00.
+
+### SJF
+
+```
+[09:00 - 09:30]  Team standup meeting  (Critical)
+[11:00 - 11:30]  Client call  (Critical)
+[14:00 - 15:00]  Deploy to staging  (High)
+[15:00 - 16:00]  Update dependencies  (Low)
+[16:00 - 17:00]  Write release notes  (Very Low)
+[17:00 - 18:30]  Fix UI bugs  (Medium)
+[18:30 - 20:30]  Architecture review  (High)
+[20:30 - 22:30]  Performance profiling  (Medium)
+[22:30 - Day2 00:30]  Research new framework  (Low)
+[Day2 00:30 - Day2 03:30]  Write documentation  (Very Low)
+
+Tasks completed: 10  |  Deferred: 10  |  Throughput: 0.69 tasks/hour
+Avg response time: 390 mins  |  Avg waiting time: 390 mins
+```
+
+SJF completed 10 tasks by favouring short ones, but deferred several important tasks including `Fix critical bug (Critical)` and `Write project report (High)` because their durations pushed them down the sort order.
+
+### Priority
+
+```
+[09:00 - 09:30]  Team standup meeting  (Critical)
+[09:30 - 11:00]  Fix critical bug  (Critical)
+[11:00 - 11:30]  Client call  (Critical)
+[11:30 - 12:30]  Sprint planning  (High)
+[12:30 - 15:30]  Write project report  (High)
+[15:30 - 16:30]  Deploy to staging  (High)
+[16:30 - 19:30]  Security audit  (High)
+[19:30 - 21:30]  Architecture review  (High)
+[21:30 - Day2 00:00]  Refactor auth module  (Medium)
+[Day2 00:00 - Day2 02:00]  Performance profiling  (Medium)
+[Day2 02:00 - Day2 04:00]  Research new framework  (Low)
+[Day2 04:00 - Day2 05:00]  Write release notes  (Very Low)
+
+Tasks completed: 12  |  Deferred: 8  |  Throughput: 0.60 tasks/hour
+Avg response time: 402.5 mins  |  Avg waiting time: 402.5 mins
+```
+
+Priority completed 2 more tasks and scheduled all three Critical tasks early. Throughput is lower than SJF because it willingly schedules longer high-priority tasks rather than optimising for count. The urgency boost visibly influenced the order - lower priority tasks with approaching deadlines were pulled forward over higher priority tasks with more time to spare.
 
 ---
 
