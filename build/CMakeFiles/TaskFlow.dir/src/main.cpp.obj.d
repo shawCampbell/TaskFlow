@@ -145,6 +145,7 @@ CMakeFiles/TaskFlow.dir/src/main.cpp.obj: \
  C:/dev_personal/TaskFlow/include/Task.h \
  C:/dev_personal/TaskFlow/include/Priority.h \
  C:/dev_personal/TaskFlow/include/ScheduleResult.h \
+ C:/dev_personal/TaskFlow/include/CompletedTask.h \
  C:/dev_personal/TaskFlow/include/SchedulerContext.h \
  C:/msys64/ucrt64/include/c++/15.2.0/memory \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
@@ -163,4 +164,11 @@ CMakeFiles/TaskFlow.dir/src/main.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_memory_defs.h \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
  C:/dev_personal/TaskFlow/include/IScheduler.h \
- C:/dev_personal/TaskFlow/include/SchedulerFactory.h
+ C:/dev_personal/TaskFlow/include/SchedulerFactory.h \
+ C:/dev_personal/TaskFlow/include/testData.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h

@@ -5,8 +5,8 @@ ScheduleResult SjfScheduler::schedule(const std::vector<Task>& tasks, int timeLi
     std::vector<Task> sorted = tasks;
     std::sort(sorted.begin(), sorted.end(), [](const Task& a, const Task& b) {
         if (a.timeSlots != b.timeSlots)
-            return a.timeSlots < b.timeSlots;
-        return static_cast<int>(a.priority) > static_cast<int>(b.priority);
+            return a.timeSlots < b.timeSlots; // sort by time slots ascending
+        return static_cast<int>(a.priority) > static_cast<int>(b.priority); // tie-break by priority descending
     });
 
     ScheduleResult result;

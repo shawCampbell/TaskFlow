@@ -3,11 +3,13 @@
 
 CMakeFiles/TaskFlow.dir/src/PriorityScheduler.cpp.obj
  C:/dev_personal/TaskFlow/src/PriorityScheduler.cpp
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
  C:/dev_personal/TaskFlow/include/IScheduler.h
  C:/dev_personal/TaskFlow/include/Priority.h
  C:/dev_personal/TaskFlow/include/PriorityScheduler.h
  C:/dev_personal/TaskFlow/include/ScheduleResult.h
  C:/dev_personal/TaskFlow/include/Task.h
+ C:/dev_personal/TaskFlow/include/Time.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
@@ -125,17 +127,18 @@ CMakeFiles/TaskFlow.dir/src/PriorityScheduler.cpp.obj
 
 CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj
  C:/dev_personal/TaskFlow/src/SchedulerContext.cpp
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
  C:/dev_personal/TaskFlow/include/IScheduler.h
  C:/dev_personal/TaskFlow/include/Priority.h
  C:/dev_personal/TaskFlow/include/ScheduleResult.h
  C:/dev_personal/TaskFlow/include/SchedulerContext.h
  C:/dev_personal/TaskFlow/include/Task.h
+ C:/dev_personal/TaskFlow/include/time.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
  C:/msys64/ucrt64/include/_mingw_secapi.h
  C:/msys64/ucrt64/include/_mingw_stat64.h
- C:/msys64/ucrt64/include/_timeval.h
  C:/msys64/ucrt64/include/c++/15.2.0/backward/auto_ptr.h
  C:/msys64/ucrt64/include/c++/15.2.0/backward/binders.h
  C:/msys64/ucrt64/include/c++/15.2.0/bit
@@ -253,12 +256,10 @@ CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj
  C:/msys64/ucrt64/include/pthread.h
  C:/msys64/ucrt64/include/pthread_compat.h
  C:/msys64/ucrt64/include/pthread_signal.h
- C:/msys64/ucrt64/include/pthread_time.h
  C:/msys64/ucrt64/include/pthread_unistd.h
  C:/msys64/ucrt64/include/sched.h
  C:/msys64/ucrt64/include/sec_api/stdio_s.h
  C:/msys64/ucrt64/include/sec_api/stdlib_s.h
- C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h
  C:/msys64/ucrt64/include/sec_api/wchar_s.h
  C:/msys64/ucrt64/include/sec_api/wconio_s.h
  C:/msys64/ucrt64/include/signal.h
@@ -266,9 +267,7 @@ CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj
  C:/msys64/ucrt64/include/stdio.h
  C:/msys64/ucrt64/include/stdlib.h
  C:/msys64/ucrt64/include/swprintf.inl
- C:/msys64/ucrt64/include/sys/timeb.h
  C:/msys64/ucrt64/include/sys/types.h
- C:/msys64/ucrt64/include/time.h
  C:/msys64/ucrt64/include/vadefs.h
  C:/msys64/ucrt64/include/wchar.h
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h
@@ -278,6 +277,7 @@ CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj
 
 CMakeFiles/TaskFlow.dir/src/SchedulerFactory.cpp.obj
  C:/dev_personal/TaskFlow/src/SchedulerFactory.cpp
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
  C:/dev_personal/TaskFlow/include/IScheduler.h
  C:/dev_personal/TaskFlow/include/Priority.h
  C:/dev_personal/TaskFlow/include/PriorityScheduler.h
@@ -285,12 +285,12 @@ CMakeFiles/TaskFlow.dir/src/SchedulerFactory.cpp.obj
  C:/dev_personal/TaskFlow/include/SchedulerFactory.h
  C:/dev_personal/TaskFlow/include/SjfScheduler.h
  C:/dev_personal/TaskFlow/include/Task.h
+ C:/dev_personal/TaskFlow/include/time.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
  C:/msys64/ucrt64/include/_mingw_secapi.h
  C:/msys64/ucrt64/include/_mingw_stat64.h
- C:/msys64/ucrt64/include/_timeval.h
  C:/msys64/ucrt64/include/c++/15.2.0/backward/auto_ptr.h
  C:/msys64/ucrt64/include/c++/15.2.0/backward/binders.h
  C:/msys64/ucrt64/include/c++/15.2.0/bit
@@ -409,12 +409,10 @@ CMakeFiles/TaskFlow.dir/src/SchedulerFactory.cpp.obj
  C:/msys64/ucrt64/include/pthread.h
  C:/msys64/ucrt64/include/pthread_compat.h
  C:/msys64/ucrt64/include/pthread_signal.h
- C:/msys64/ucrt64/include/pthread_time.h
  C:/msys64/ucrt64/include/pthread_unistd.h
  C:/msys64/ucrt64/include/sched.h
  C:/msys64/ucrt64/include/sec_api/stdio_s.h
  C:/msys64/ucrt64/include/sec_api/stdlib_s.h
- C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h
  C:/msys64/ucrt64/include/sec_api/wchar_s.h
  C:/msys64/ucrt64/include/sec_api/wconio_s.h
  C:/msys64/ucrt64/include/signal.h
@@ -422,9 +420,7 @@ CMakeFiles/TaskFlow.dir/src/SchedulerFactory.cpp.obj
  C:/msys64/ucrt64/include/stdio.h
  C:/msys64/ucrt64/include/stdlib.h
  C:/msys64/ucrt64/include/swprintf.inl
- C:/msys64/ucrt64/include/sys/timeb.h
  C:/msys64/ucrt64/include/sys/types.h
- C:/msys64/ucrt64/include/time.h
  C:/msys64/ucrt64/include/vadefs.h
  C:/msys64/ucrt64/include/wchar.h
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h
@@ -434,11 +430,13 @@ CMakeFiles/TaskFlow.dir/src/SchedulerFactory.cpp.obj
 
 CMakeFiles/TaskFlow.dir/src/SjfScheduler.cpp.obj
  C:/dev_personal/TaskFlow/src/SjfScheduler.cpp
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
  C:/dev_personal/TaskFlow/include/IScheduler.h
  C:/dev_personal/TaskFlow/include/Priority.h
  C:/dev_personal/TaskFlow/include/ScheduleResult.h
  C:/dev_personal/TaskFlow/include/SjfScheduler.h
  C:/dev_personal/TaskFlow/include/Task.h
+ C:/dev_personal/TaskFlow/include/Time.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
@@ -556,21 +554,25 @@ CMakeFiles/TaskFlow.dir/src/SjfScheduler.cpp.obj
 
 CMakeFiles/TaskFlow.dir/src/main.cpp.obj
  C:/dev_personal/TaskFlow/src/main.cpp
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
  C:/dev_personal/TaskFlow/include/IScheduler.h
  C:/dev_personal/TaskFlow/include/Priority.h
  C:/dev_personal/TaskFlow/include/ScheduleResult.h
  C:/dev_personal/TaskFlow/include/SchedulerContext.h
  C:/dev_personal/TaskFlow/include/SchedulerFactory.h
  C:/dev_personal/TaskFlow/include/Task.h
+ C:/dev_personal/TaskFlow/include/testData.h
  C:/dev_personal/TaskFlow/include/time.h
  C:/msys64/ucrt64/include/_mingw.h
  C:/msys64/ucrt64/include/_mingw_mac.h
  C:/msys64/ucrt64/include/_mingw_off_t.h
  C:/msys64/ucrt64/include/_mingw_secapi.h
  C:/msys64/ucrt64/include/_mingw_stat64.h
+ C:/msys64/ucrt64/include/c++/15.2.0/algorithm
  C:/msys64/ucrt64/include/c++/15.2.0/backward/auto_ptr.h
  C:/msys64/ucrt64/include/c++/15.2.0/backward/binders.h
  C:/msys64/ucrt64/include/c++/15.2.0/bit
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/align.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/alloc_traits.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/allocated_ptr.h
@@ -619,10 +621,12 @@ CMakeFiles/TaskFlow.dir/src/main.cpp.obj
  C:/msys64/ucrt64/include/c++/15.2.0/bits/shared_ptr_atomic.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/shared_ptr_base.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/std_abs.h
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algobase.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_construct.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_function.h
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h
@@ -635,6 +639,7 @@ CMakeFiles/TaskFlow.dir/src/main.cpp.obj
  C:/msys64/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/string_view.tcc
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stringfwd.h
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/unique_ptr.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator.h
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h
@@ -669,6 +674,7 @@ CMakeFiles/TaskFlow.dir/src/main.cpp.obj
  C:/msys64/ucrt64/include/c++/15.2.0/new
  C:/msys64/ucrt64/include/c++/15.2.0/ostream
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_memory_defs.h
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/pstl_config.h
  C:/msys64/ucrt64/include/c++/15.2.0/stdexcept

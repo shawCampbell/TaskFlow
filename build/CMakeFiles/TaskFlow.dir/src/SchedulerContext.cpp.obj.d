@@ -84,10 +84,38 @@ CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj: \
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h \
  C:/msys64/ucrt64/include/limits.h C:/msys64/ucrt64/include/signal.h \
  C:/msys64/ucrt64/include/pthread_signal.h \
- C:/msys64/ucrt64/include/time.h C:/msys64/ucrt64/include/sys/timeb.h \
- C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h \
- C:/msys64/ucrt64/include/_timeval.h \
- C:/msys64/ucrt64/include/pthread_time.h \
+ C:/dev_personal/TaskFlow/include/time.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/string \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/char_traits.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/localefwd.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/clocale \
+ C:/msys64/ucrt64/include/locale.h C:/msys64/ucrt64/include/stdio.h \
+ C:/msys64/ucrt64/include/sec_api/stdio_s.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/cctype \
+ C:/msys64/ucrt64/include/ctype.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/ostream_insert.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/range_access.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/initializer_list \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/string_view \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/string_view.tcc \
+ C:/msys64/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/cstdlib \
+ C:/msys64/ucrt64/include/stdlib.h \
+ C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/stdlib.h \
+ C:/msys64/ucrt64/include/malloc.h \
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/std_abs.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/cstdio \
+ C:/msys64/ucrt64/include/c++/15.2.0/cerrno \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/charconv.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/memory_resource.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/cstddef \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
  C:/msys64/ucrt64/include/pthread_compat.h \
  C:/msys64/ucrt64/include/sched.h \
  C:/msys64/ucrt64/include/pthread_unistd.h \
@@ -105,40 +133,10 @@ CMakeFiles/TaskFlow.dir/src/SchedulerContext.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
  C:/msys64/ucrt64/include/c++/15.2.0/vector \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
- C:/msys64/ucrt64/include/c++/15.2.0/initializer_list \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/range_access.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/vector.tcc \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/memory_resource.h \
- C:/msys64/ucrt64/include/c++/15.2.0/cstddef \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
  C:/dev_personal/TaskFlow/include/IScheduler.h \
  C:/dev_personal/TaskFlow/include/Task.h \
- C:/msys64/ucrt64/include/c++/15.2.0/string \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/char_traits.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/localefwd.h \
- C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
- C:/msys64/ucrt64/include/c++/15.2.0/clocale \
- C:/msys64/ucrt64/include/locale.h C:/msys64/ucrt64/include/stdio.h \
- C:/msys64/ucrt64/include/sec_api/stdio_s.h \
- C:/msys64/ucrt64/include/c++/15.2.0/cctype \
- C:/msys64/ucrt64/include/ctype.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/ostream_insert.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.h \
- C:/msys64/ucrt64/include/c++/15.2.0/string_view \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/string_view.tcc \
- C:/msys64/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
- C:/msys64/ucrt64/include/c++/15.2.0/cstdlib \
- C:/msys64/ucrt64/include/stdlib.h \
- C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
- C:/msys64/ucrt64/include/c++/15.2.0/stdlib.h \
- C:/msys64/ucrt64/include/malloc.h \
- C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/std_abs.h \
- C:/msys64/ucrt64/include/c++/15.2.0/cstdio \
- C:/msys64/ucrt64/include/c++/15.2.0/cerrno \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/charconv.h \
- C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
  C:/dev_personal/TaskFlow/include/Priority.h \
- C:/dev_personal/TaskFlow/include/ScheduleResult.h
+ C:/dev_personal/TaskFlow/include/ScheduleResult.h \
+ C:/dev_personal/TaskFlow/include/CompletedTask.h
