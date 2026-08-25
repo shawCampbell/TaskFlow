@@ -1,4 +1,4 @@
-**Note:** This is a toy project I did to demonstrate the OOP design and C++ skills I had learned in internships and university and had nothing to show for. It is not a useful application. 
+**Note:** This is a toy project I did to demonstrate the OOP design and C++ skills I had learned in internships and university and had nothing to show for. It is not a useful application. I did use AI to speed up the code construction, but did not implement anything I don't understand well.
 
 # TaskFlow — A CPU-Inspired Task Scheduler in C++
 
