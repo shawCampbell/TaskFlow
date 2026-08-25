@@ -5,7 +5,10 @@
 TaskFlow is a back-end C++ application that accepts a set of user-defined tasks and schedules them across a fixed time window using scheduling algorithms adapted from classical CPU scheduling theory. Tasks are scheduled in half-hour slots, and any tasks that cannot fit within the window or meet their constraints are flagged as deferred.
 
 <p align="center">
-<img src="./Design/OO Design.drawio.png" height="500" style="margin-left:10; border-radius:2%;">
+    <img src="./Design/OO Design.drawio.png" height="400" border-radius:2%;">
+</p>
+<p align="center">
+    UML Diagram for TaskFlow Application
 </p>
 
 ---
